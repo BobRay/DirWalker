@@ -49,10 +49,10 @@ if (!class_exists('DirWalker')) {
          * If set, only filenames with these strings/patterns
          * will be includes in the list.
          *
-         * @param array $includes - comma-separated list of strings or patterns
+         * @param string $includes - comma-separated list of strings or patterns
          * @param bool $useRegex - use a regex pattern for the search
          */
-        public function setIncludes($includes = array(), $useRegex = false) {
+        public function setIncludes($includes = '', $useRegex = false) {
             $this->includes = explode(',', $includes);
             $this->includesUseRegex = $useRegex;
         }
@@ -61,10 +61,10 @@ if (!class_exists('DirWalker')) {
          * If set, filenames with these strings will be excluded
          * from the list.
          *
-         * @param array $excludes - comma-separated list of strings or patterns
+         * @param string $excludes - comma-separated list of strings or patterns
          * @param bool $useRegex - use a regex pattern for the search
          */
-        public function setExcludes($excludes = array(), $useRegex = false) {
+        public function setExcludes($excludes = '', $useRegex = false) {
             $this->excludes = explode(',', $excludes);
             $this->excludesUseRegex = $useRegex;
         }
@@ -73,9 +73,9 @@ if (!class_exists('DirWalker')) {
          * Directories containing these strings (and their descendants)
          * will be excluded from the search.
          *
-         * @param $excludes - comma-separated list of strings
+         * @param string $excludes - comma-separated list of strings
          */
-        public function setExcludeDirs($excludes) {
+        public function setExcludeDirs($excludes = '') {
             $this->excludeDirs = explode(',', $excludes);
         }
 
