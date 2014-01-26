@@ -55,7 +55,6 @@ if (!class_exists('DirWalker')) {
         public function setIncludes($includes = array(), $useRegex = false) {
             $this->includes = explode(',', $includes);
             $this->includesUseRegex = $useRegex;
-
         }
 
         /**
@@ -99,7 +98,6 @@ if (!class_exists('DirWalker')) {
                     }
                 }
             }
-
             return $found;
         }
 
@@ -122,7 +120,6 @@ if (!class_exists('DirWalker')) {
                     }
                 }
             }
-
             return $found;
         }
 
@@ -139,10 +136,8 @@ if (!class_exists('DirWalker')) {
                     $found = true;
                 }
             }
-
             return $found;
         }
-
 
         /**
          * Recursively search directories for certain file types
@@ -162,7 +157,6 @@ if (!class_exists('DirWalker')) {
                 /* Skip excluded directories, if any */
                 if ((!empty($this->excludeDirs)) && ($this->hasExcludeDirs($dir))) {
                     closedir($dh);
-
                     return;
                 }
                 while (($file = readdir($dh)) !== false) {
@@ -188,7 +182,6 @@ if (!class_exists('DirWalker')) {
                 closedir($dh);
             }
         }
-
 
         /**
          * Default processor called by dirWalk() -- adds files
