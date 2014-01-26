@@ -1,0 +1,97 @@
+<p>DirWalker is a utility class for recursively walking through directories and either aggregating paths and filenames or processing files as they are found.</p>
+
+<h3>DirWalker Class Overview</h3>
+
+<p>By default, DirWalker creates an associative array of files by recursively walking through directories and (optionally) their descendants. The array will contain the full path to the file (including the filename) as the key and the full filename of the file as the value. It's important to have the full path as the key in order for the array keys to be unique.
+
+By extending DirWalker and overriding its processFiles() method, you can process the files as they are found.
+
+Directories can be excluded from the search. Files to include and exclude can be specified by strings or regex patterns in the filename.
+
+See the files in the core/components/dirwalker/docs/examples directory for examples.</p>
+
+
+<h3>Installing DirWalker</h3>
+
+<p>
+Go to System | Package Management on the main menu in the MODX Manager and click on the &quot;Download Extras&quot; button. That will take you to the Revolution Repository (AKA Web Transport Facility). Put DirWalker in the search box and press Enter. Click on the &quot;Download&quot; button, and once the package is downloaded, click on the &quot;Back to Package Manager&quot; button. That should bring you back to your Package Management grid. Click on the &quot;Install&quot; button next to DirWalker in the grid. The DirWalker package should now be installed.</p>
+
+<h3>Usage</h3>
+
+<p>DirWalker is simply a class file. When you install it, the class file is placed in the core/components/dirwalker/model/dirwalker directory. No snippets or resources are installed.</p>
+
+<p>In order to use DirWalker in a script, instantiate it with the following code at the top of the file:</p>
+
+<pre class="brush: php; toolbar: false;"><fixedpre>
+if (!defined('MODX_CORE_PATH')) {
+    define('BASE_PATH', 'C:/xampp/htdocs/addons/');
+    require BASE_PATH . 'config.core.php';
+    require MODX_CORE_PATH . MODX_CONFIG_KEY . '/' . MODX_CONFIG_KEY . '.inc.php';
+}
+include MODX_CORE_PATH . 'components/dirwalker/model/dirwalker/dirwalker.class.php';
+</fixedpre></pre>
+
+<p>The code above allows DirWalker to be used inside or outside of MODX, though to use it outside of MODX, you'll need to correct the <code>BASE_PATH</code> setting. Set it to the full path to your MODX root directory and be sure to include a trailing slash. If you will be using DirWalk inside MODX, only the last line of the code above is necessary.</p>
+
+<p>Here is an example that will list all the .php files in your MODX install. It excludes the cache, setup, _build, and packages directories and any Git files or directories as well as combined or minimized files. It will take a while to run.</p>
+
+<pre class="brush: php; toolbar: false;"><fixedpre>
+$searchStart = MODX_BASE_PATH;
+$dw = new DirWalker();
+$dw->setIncludes('.php');
+$dw->setExcludes('.git,-all,-min');
+$dw->setExcludeDirs('cache,setup,_build,packages,.git');
+$dw->dirWalk($searchStart, true);
+
+$fileArray = $dw->getFiles();
+
+foreach($fileArray as $path => $filename) {
+   echo "\n" . $filename);
+}
+
+echo "\n\n" . count($fileArray) . ' php files found';
+</fixedpre></pre>
+
+<p>In the <code>foreach</code> loop, <code>$path</code> will be the full path to the file and <code>$filename</code> will be the full name of the file. Inside the loop, you could process the file, looking inside it with <code>$content = file_get_contents($path)</code> and/or altering its content.</p>
+
+<h2>DirWalk Methods</h2>
+
+<p>The following sections describe the various methods of the DirWalk class. The three <code>set*()</code> methods are optional. If you don't call any of them, all files found will be added to the results.</p>
+
+<h3>dirWalk($dir, $recursive)</h3>
+
+<p>This is the main function. The first argument is the directory to start in (with or without a trailing slash). The second should be either <code>true</code> or <code>false</code>, depending on whether you want <code>dirWalk()</code> to recursively search the directories below the starting directory. The <code>dirWalk()</code> method has a third argument, but you should never send it in the call. It is used internally by the method and should always be empty to begin with.</p>
+
+<h3>processFile($dir, $file)</h3>
+
+<p>This method is called by the <code>dirWalk()</code> method and should never be called directly. If you need it to do something else, extend the DirWalk class and override it. In the <code>core/components/dirwalker/docs/example/process-files-as-found.php</code> file, there is an example showing how to do that. Overriding the <code>processFile()</code> method is useful if you want to process the files as they are found rather than using the full file list after the search is completed.</p>
+
+<h3>setIncludes($includes, $useRegex)</h3>
+
+<p>This method allows you to set the pattern used to include files in the search. The <code>includes</code> argument is a single string. It can contain a comma-separated list of strings that must be in the filename or a comma-separated list of regular expression (regex) patterns that must be matched in the filename. If you use the regex feature, set the second argument to <code>true</code>, otherwise, you can omit it.</p>
+
+<p>If you send multiple strings or regex patterns, a file that matches any of them will be included.</p>
+
+<h3>setExcludes($excluded, $useRegex)</h3>
+
+<p>This method lets you exclude files based on a comma-separated list of strings or regex patterns. It works exactly like <code>setIncludes()</code></p>
+
+<p>If you send multiple strings or patterns, any file that matches any of them will be excluded from the search.</p>
+
+<h3>setExcludeDirs($excludes)</h3>
+
+<p>This method allows you to exclude directories by sending a comma-separated list of strings in the argument. Any directory that contains any of the strings in its name will be skipped.</p>
+
+<h3>getFiles()</h3>
+
+<p>This method is used after calling <code>dirWalk()</code> to retrieve the array of files found in the search. It returns an array of key/value pairs with the full path to the file (including the filename) as the key and the full name of the file as the value.</p>
+
+<h3>resetFiles()</h3>
+
+<p>This method sets the <code>$this->files</code> array to an empty array. If you have called <code>dirWalk() </code> and retrieved the files and need to call <code>dirWalk()</code> again on a different directory, call this first to empty the file list. You may call any of the <code>set*()</code> methods again before calling <code>dirWalk()</code> to change the search parameters. There is an example of this in the <code>core/components/dirwalker/docs/example/process-files-as-found.php</code> file.</p>
+
+<h3>has*()</h3>
+
+<p>The three <code>has*()</code> methods are used internally and should not be called directly, though you are free to override them in a derived class if you want to change their behavior.</p>
+
+<p>&nbsp;</p>
