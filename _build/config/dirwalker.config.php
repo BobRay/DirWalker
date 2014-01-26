@@ -117,24 +117,6 @@ $components = array(
 
     'elements' => array(
 
-        'snippets' => array(
-            'Snippet1' => array(
-                'category' => 'DirWalker',
-                'description' => 'Description for Snippet one',
-                'static' => true,
-            ),
-
-            'Snippet2' => array( /* dirwalker with static and property set(s)  */
-                'category' => 'Category2',
-                'description' => 'Description for Snippet two',
-                'static' => false,
-                'propertySets' => array(
-                    'PropertySet1',
-                    'PropertySet2'
-                ),
-            ),
-
-        ),
     ),
     /* (optional) will make all element objects static - 'static' field above will be ignored */
     'allStatic' => false,
