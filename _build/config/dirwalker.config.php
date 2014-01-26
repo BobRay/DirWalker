@@ -61,12 +61,6 @@ $components = array(
     */
 
     'namespaces' => array(
-        'dirwalker' => array(
-            'name' => 'dirwalker',
-            'path' => '{core_path}components/dirwalker/',
-            'assets_path' => '{assets_path}components/dirwalker/',
-        ),
-
     ),
 
     /* ************************ CONTEXT(S) ************************* */
@@ -81,10 +75,10 @@ $components = array(
     */
 
     'categories' => array(
-        'DirWalker' => array(
+        /*'DirWalker' => array(
             'category' => 'DirWalker',
-            'parent' => '',  /* top level category */
-        ),
+            'parent' => '',
+        ),*/
     ),
 
     /* *************************** MENUS ****************************** */
