@@ -21,6 +21,8 @@ require_once MODX_CORE_PATH . 'components/dirwalker/model/dirwalker/dirwalker.cl
 
 $searchStart = MODX_PROCESSORS_PATH;
 
+$eol = php_sapi_name() == 'cli'? "\n": '<br />';
+
 $dw = new DirWalker();
 /* widget has the string 'get' in it */
 $dw->setExcludes('widget');
@@ -36,7 +38,7 @@ ksort($files);
 foreach ($files as $path => $file) {
     /* Remove first part of path */
     $path = str_replace(MODX_PROCESSORS_PATH, '', $path);
-    echo "\n" . $path;
+    echo $eol . $path;
 }
 
-echo "\n\n" . count($files) . ' found';
+echo $eol . $eol . count($files) . ' found';

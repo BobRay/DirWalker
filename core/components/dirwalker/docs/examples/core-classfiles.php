@@ -20,6 +20,8 @@ if (!defined('MODX_CORE_PATH')) {
 }
 require_once MODX_CORE_PATH . 'components/dirwalker/model/dirwalker/dirwalker.class.php';
 
+$eol = php_sapi_name() == 'cli'? "\n" : '<br />';
+
 $searchStart = MODX_CORE_PATH;
 
 $dw = new DirWalker();
@@ -32,7 +34,7 @@ ksort($files);
 foreach ($files as $path => $file) {
     /* Remove first part of path */
     $path = str_replace(MODX_CORE_PATH, '', $path);
-    echo "\n" . $path;
+    echo $eol . $path;
 }
 
-echo "\n\n" . count($files) . ' class files found';
+echo $eol . $eol . count($files) . ' class files found';

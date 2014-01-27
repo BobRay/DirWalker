@@ -47,6 +47,8 @@ class MyDirWalker extends DirWalker {
 
 $searchStart = MODX_CORE_PATH;
 
+$eol = php_sapi_name() == 'cli'? "\n": '<br />';
+
 $dw = new MyDirWalker();
 
 $dw->setIncludes('.php');
@@ -58,9 +60,9 @@ asort($events);
 
 echo "\nCore Files\n";
 foreach ($events as $event) {
-    echo "\n   " . $event;
+    echo $eol . "   " . $event;
 }
-echo "\n\n" . count($events) . ' core events found';
+echo $eol . $eol . count($events) . ' core events found';
 
 $dw->resetFiles();
 $searchStart = MODX_MANAGER_PATH;
@@ -68,9 +70,9 @@ $dw->dirWalk($searchStart, true);
 $events = $dw->getFiles();
 asort($events);
 
-echo "\n\nManager Files\n";
+echo $eol . $eol . "Manager Files\n";
 foreach ($events as $event) {
-    echo "\n   " . $event;
+    echo $eol . "   " . $event;
 }
-echo "\n\n" . count($events) . ' manager events found';
+echo $eol . $eol . count($events) . ' manager events found';
 
