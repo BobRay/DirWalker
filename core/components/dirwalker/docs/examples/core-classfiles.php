@@ -31,6 +31,8 @@ $dw->dirWalk($searchStart, true);
 $files = $dw->getFiles();
 
 ksort($files);
+
+echo $eol . 'MODX CORE CLASS FILES' . $eol;
 foreach ($files as $path => $file) {
     /* Remove first part of path */
     $path = str_replace(MODX_CORE_PATH, '', $path);
