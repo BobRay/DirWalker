@@ -184,8 +184,12 @@ if (!class_exists('DirWalker')) {
         }
 
         /**
-         * Default processor called by dirWalk() -- adds files
-         * to $this->files Override in a derived class to do
+         * Default processor called by dirWalk() -- adds a found
+         * file to $this->files in the form:.
+         *
+         * fullPath => fileName
+         *
+         * Override this method in a derived class to do
          * something else, or to process files as they are found.
          *
          * @param $dir string - directory of file (no trailing slash)
