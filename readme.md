@@ -1,10 +1,15 @@
-DirWalker Extra for MODx Revolution
+DirWalker Extra for MODX Revolution
 =======================================
 
 
-**Author:** Bob Ray <http://bobsguides.com> [Bob's Guides](http://bobsguides.com)
+**Author:** Bob Ray [Bob's Guides](https://bobsguides.com)
 
-Documentation is available at [Bob's Guides](http://bobsguides.com/dirwalker-tutorial.html)
+**Documentation:** [DirWalker Docs](https://bobsguides.com/dirwalker-tutorial.html)
+
+**Bugs and requests:** [ConverDatabaseCharset Issues](https://github.com/BobRay/DirWalker/issues)
+
+**Questions about using DirWalker** [MODX Forums](https://forums.modx.com)
+
 
 By default, DirWalker creates an associative array of files by recursively walking through directories and (optionally) their descendants. By extending DirWalker and overriding its processFiles() method, you can process the files as they are found.
 

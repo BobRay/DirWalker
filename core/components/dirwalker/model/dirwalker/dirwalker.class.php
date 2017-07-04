@@ -2,7 +2,7 @@
 /**
  * DirWalker class file
  *
- * Copyright 2013 by Bob Ray <http://bobsguides.com>
+ * Copyright 2013-2017 by Bob Ray <https://bobsguides.com>
  * Created on 01-25-2014
  *
  * DirWalker is free software; you can redistribute it and/or modify it under the
