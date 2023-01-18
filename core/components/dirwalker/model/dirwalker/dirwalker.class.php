@@ -153,13 +153,14 @@ if (!class_exists('DirWalker')) {
                 $dir = rtrim($dir, '/\\');
             }
 
-            
-            if ($dh = opendir($dir)) {
+            $dh = opendir($dir);
+            if ($dh) {
                 /* Skip excluded directories, if any */
                 if ((!empty($this->excludeDirs)) && ($this->hasExcludeDirs($dir))) {
                     closedir($dh);
                     return;
                 }
+
                 while (($file = readdir($dh)) !== false) {
                     if ($file === '.' || $file === '..') {
                         continue;
