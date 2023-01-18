@@ -47,7 +47,7 @@ if (!class_exists('DirWalker')) {
 
         /**
          * If set, only filenames with these strings/patterns
-         * will be includes in the list.
+         * will be included in the list.
          *
          * @param string $includes - comma-separated list of strings or patterns
          * @param bool $useRegex - use a regex pattern for the search
@@ -153,6 +153,7 @@ if (!class_exists('DirWalker')) {
                 $dir = rtrim($dir, '/\\');
             }
 
+            
             if ($dh = opendir($dir)) {
                 /* Skip excluded directories, if any */
                 if ((!empty($this->excludeDirs)) && ($this->hasExcludeDirs($dir))) {
