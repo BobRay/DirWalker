@@ -21,7 +21,7 @@
 if (!defined('MODX_CORE_PATH')) {
     define('BASE_PATH', 'C:/xampp/htdocs/addons/');
     require_once BASE_PATH . 'config.core.php';
-    require_once MODX_CORE_PATH . '/config' . MODX_CONFIG_KEY . '.inc.php';
+    require_once MODX_CORE_PATH . MODX_CONFIG_KEY . '/config.inc.php';
 }
 require_once MODX_CORE_PATH . 'components/dirwalker/model/dirwalker/dirwalker.class.php';
 
