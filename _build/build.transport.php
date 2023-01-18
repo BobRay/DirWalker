@@ -11,7 +11,7 @@
  *
  * Build Script for MyComponent extra
  *
- * Copyright 2012-2019 Bob Ray <https://bobsguides.com>
+ * Copyright 2012-2023 Bob Ray <https://bobsguides.com>
  * Created on 10-23-2012
  *
  * MyComponent is free software; you can redistribute it and/or modify it under the
@@ -244,7 +244,7 @@ if (!defined('MODX_CORE_PATH')) {
 }
 
 @include dirname(__FILE__) . '/config/current.project.php';
-
+/** @var string $currentProject */
 if (!$currentProject) {
     session_write_close();
     die('Could not get current project');
