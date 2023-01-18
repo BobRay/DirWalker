@@ -16,14 +16,14 @@ $components = array(
     'packageName' => 'DirWalker',  /* No spaces, no dashes */
     'packageNameLower' => $packageNameLower,
     'packageDescription' => 'DirWalker project for MyComponent extra',
-    'version' => '1.0.0',
+    'version' => '1.0.3',
     'release' => 'pl',
     'author' => 'Bob Ray',
     'email' => '<https://bobsguides.com>',
     'authorUrl' => 'https://bobsguides.com',
     'authorSiteName' => "Bob's Guides",
     'packageDocumentationUrl' => 'https://bobsguides.com/dirwalker-tutorial.html',
-    'copyright' => '2013-2019',
+    'copyright' => '2013-2023',
 
     /* no need to edit this except to change format */
     'createdon' => strftime('%m-%d-%Y'),
