@@ -3,6 +3,8 @@ Changelog for DirWalker
 DirWalker 1.0.3
 ---------------------------------
  - Compatible with MODX 3
+ - Minor bug fixes and improvements
+ - Update copyrights
 
 DirWalker 1.0.0
 ---------------------------------
